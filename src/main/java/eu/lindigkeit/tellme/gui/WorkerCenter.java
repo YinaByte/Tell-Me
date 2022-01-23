@@ -25,11 +25,7 @@ public class WorkerCenter extends Stage {
 
     private static final ResourceBundle LANG = ResourceBundle.getBundle("language");
 
-    private String user;
-
     public WorkerCenter(String user) {
-
-        this.user = user;
 
         this.setTitle("Tell Me! - " + LANG.getString("workerhub"));
         this.setResizable(false);
@@ -85,11 +81,11 @@ public class WorkerCenter extends Stage {
         submit.setToggleGroup(group);
         submit.onMouseClickedProperty().set(event -> {
 
-            if (client.getText().isEmpty() || workType.getText().isEmpty() || timeSpent.getText().isEmpty() || date[0] == null) {
+                    if (client.getText().isEmpty() || workType.getText().isEmpty() || timeSpent.getText().isEmpty() || date[0] == null) {
 
-                System.out.println("Please fill in all fields!");
-                return;
-            }
+                        System.out.println("Please fill in all fields!");
+                        return;
+                    }
                     if (Database.setEntry(user, client.getText(), date[0], Integer.parseInt(timeSpent.getText()), workType.getText()))
                         System.out.println("Entry successfully added");
                     else System.out.println("Entry could not be added");

@@ -41,10 +41,6 @@ public class Login extends Stage {
         pIcon.setIconSize(24);
         pIcon.setIconColor(Color.web("#2874A6"));
 
-        FontIcon sIcon = new FontIcon(FluentUiFilledMZ.SETTINGS_28);
-        sIcon.setIconSize(24);
-        sIcon.setIconColor(Color.web("#34495E"));
-
         FontIcon subIcon = new FontIcon(FluentUiFilledAL.ARROW_RIGHT_24);
         subIcon.setIconSize(24);
         subIcon.setIconColor(Color.web("#34495E"));
@@ -58,10 +54,6 @@ public class Login extends Stage {
         password.setLeft(pIcon);
         password.setId("passwordCPF");
         password.getStyleClass().add("form");
-
-        Button settings = new Button();
-        settings.setGraphic(sIcon);
-        settings.setId("settingsB");
 
         Button submit = new Button();
         submit.setGraphic(subIcon);
@@ -85,7 +77,7 @@ public class Login extends Stage {
                     }
                 }
         );
-        Scene scene = new Scene(new Group(loginL, user, password, settings, submit, INVALID_CREDENTIALS), 500, 300);
+        Scene scene = new Scene(new Group(loginL, user, password, submit, INVALID_CREDENTIALS), 500, 300);
         scene.getStylesheets().add("login.css");
         this.setScene(scene);
         this.show();
