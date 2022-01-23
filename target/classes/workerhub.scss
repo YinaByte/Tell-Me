@@ -1,0 +1,77 @@
+#button {
+
+  -fx-background-insets: 0;
+  -fx-background-radius: 50px;
+  -fx-border-radius: 50px;
+  -fx-translate-y: 75px;
+}
+
+#clear {
+
+  -fx-background-color: #55697D;
+  -fx-background-insets: 0;
+  -fx-background-radius: 50px 0 0 50px;
+  -fx-border-radius: 50px;
+  -fx-text-fill: white;
+}
+
+#client {
+
+  -fx-translate-x: 25px;
+  -fx-translate-y: 15px;
+}
+
+#date {
+
+  -fx-pref-width: 150px;
+  -fx-translate-x: 225px;
+  -fx-translate-y: 15px;
+}
+
+#table {
+
+  -fx-border-color: #2874A6;
+  -fx-border-width: 4px 0 0 0;
+  -fx-pref-height: 200px;
+  -fx-pref-width: 600px;
+  -fx-translate-y: 200px;
+}
+
+#submit {
+
+  -fx-background-color: #2874A6;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0 50px 50px 0;
+  -fx-border-radius: 50px;
+  -fx-text-fill: white;
+}
+
+#time {
+
+  -fx-translate-x: 425px;
+  -fx-translate-y: 15px;
+}
+
+#workType {
+
+  -fx-pref-height: 100px;
+  -fx-pref-width: 600px;
+  -fx-translate-y: 100px;
+  -fx-wrap-text: true;
+}
+
+.form {
+
+  -fx-background-color: white;
+  -fx-background-insets: 0;
+  -fx-border-radius: 50px;
+  -fx-font-family: Futura, Arial, sans-serif;
+  -fx-font-size: 1.25em;
+  -fx-font-weight: bold;
+  -fx-highlight-fill: none;
+  -fx-padding: 5px, 0, 5px, 10px;
+  -fx-pref-width: 150px;
+  -fx-border-insets: 0;
+  -fx-text-fill: #34495E;
+  -fx-prompt-text-fill: #55697D;
+}

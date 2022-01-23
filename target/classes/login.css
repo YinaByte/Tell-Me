@@ -1,0 +1,58 @@
+#invalid {
+  -fx-font-family: Futura, Arial, sans-serif;
+  -fx-font-size: 1em;
+  -fx-font-weight: bold;
+  -fx-pref-width: 200px;
+  -fx-text-fill: red;
+  -fx-translate-x: 150px;
+  -fx-translate-y: 100px; }
+
+#loginL {
+  -fx-font-family: Futura, Arial, sans-serif;
+  -fx-font-size: 2em;
+  -fx-font-weight: bold;
+  -fx-pref-width: 200px;
+  -fx-text-fill: #34495E;
+  -fx-translate-x: 150px;
+  -fx-translate-y: 45px; }
+
+#passwordCPF {
+  -fx-border-color: #2874A6;
+  -fx-translate-y: 200px; }
+
+#settingsB {
+  -fx-background-color: transparent;
+  -fx-pref-height: 24px;
+  -fx-pref-width: 24px;
+  -fx-translate-x: 6px;
+  -fx-translate-y: 260px; }
+
+#submitB {
+  -fx-background-color: #D7DBDD;
+  -fx-background-radius: 50px 0 0 50px;
+  -fx-border-radius: 50px 0 0 50px;
+  -fx-pref-height: 200px;
+  -fx-pref-width: 50px;
+  -fx-translate-x: 450px;
+  -fx-translate-y: 50px; }
+
+#userCTF {
+  -fx-border-color: #5DADE2;
+  -fx-translate-y: 145px; }
+
+.form {
+  -fx-background-color: white;
+  -fx-background-insets: 0;
+  -fx-border-radius: 50px;
+  -fx-border-width: 0 4px 4px 0;
+  -fx-font-family: Futura, Arial, sans-serif;
+  -fx-font-size: 1.25em;
+  -fx-font-weight: bold;
+  -fx-highlight-fill: none;
+  -fx-padding: 5px, 0, 5px, 10px;
+  -fx-pref-width: 200px;
+  -fx-border-insets: 0;
+  -fx-text-fill: #34495E;
+  -fx-translate-x: 150px; }
+
+/*# sourceMappingURL=login.css.map */
