@@ -4,7 +4,6 @@ module eu.lindigkeit.tellme {
     requires javafx.web;
 
     requires org.controlsfx.controls;
-    requires eu.hansolo.tilesfx;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fluentui;
