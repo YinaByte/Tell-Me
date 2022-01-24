@@ -110,7 +110,7 @@ public class WorkerCenter extends Stage {
         //Table creation section
 
         TableView2<Worker> table = new TableView2<>();
-        ObservableList<Worker> info = Database.getWorkerInfo(user, "SELECT * FROM worker INNER JOIN client ON worker.worker_id = client.worker_id INNER JOIN work_details ON worker.worker_id = work_details.worker_id WHERE worker.username = '");
+        ObservableList<Worker> info = Database.getWorkerInfo(user, "SELECT * FROM worker INNER JOIN work_details ON worker.worker_id = work_details.worker_id WHERE worker.username = '");
 
         TableColumn2<Worker, String> clientNameCol = new TableColumn2<>(LANG.getString("workerhub.client"));
         clientNameCol.setCellValueFactory(p -> p.getValue().clientNameProperty());

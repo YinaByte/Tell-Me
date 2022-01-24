@@ -99,7 +99,6 @@ public abstract class Database {
      *     <li>The time worked</li>
      *     <li>Description of the work</li>
      * </ul>
-     * The name of the worker is not returned because it is the worker who is logged in.
      * <p>
      *
      * @param user The user to get the data of
@@ -114,14 +113,11 @@ public abstract class Database {
         try (Connection conn = getConnection(CONN_S[0], CONN_S[1], CONN_S[2])) {
             try (Statement stmt = conn.createStatement()) {
 
-                stmt.execute(sqlStatement + user + "");
+                stmt.execute(sqlStatement + user + "'");
                 rs = stmt.getResultSet();
             }
 
-            if (rs.next()) {
-
-                worker.add(new Worker(rs.getString("client_name"), rs.getDate("date").toLocalDate(), rs.getInt("time_spent"), rs.getString("work_type")));
-            }
+            while (rs.next()) worker.add(new Worker(rs.getString("client_name"), rs.getDate("date").toLocalDate(), rs.getInt("time_spent"), rs.getString("work_type")));
             return worker;
         } catch (SQLException e) {
 
@@ -152,16 +148,12 @@ public abstract class Database {
     public static void setEntry(String user, String clientName, LocalDate date, int time, String workType) {
 
         try {
-            ResultSet rs;
             try (Connection conn = getConnection(CONN_S[0], CONN_S[1], CONN_S[2])) {
                 try (Statement stmt = conn.createStatement()) {
 
                     stmt.execute("INSERT INTO work_details (worker_id, client_name, date, time_spent, work_type) VALUES ((SELECT worker_id FROM worker WHERE username = '" + user + "'), '" + clientName + "', '" + date + "', " + time + ", '" + workType + "')");
-                    rs = stmt.getResultSet();
                 }
             }
-
-            rs.next();
         } catch (SQLException e) {
 
             e.printStackTrace();
