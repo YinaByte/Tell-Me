@@ -49,11 +49,5 @@ r
 B.idea/libraries/Maven__org_kordamp_ikonli_ikonli_javafx_12_2_0.xml,8/7/8719c9b4b7ed066381c18f01801674b1be258b5a
 p
 @.idea/libraries/Maven__org_kordamp_ikonli_ikonli_core_12_2_0.xml,2/b/2b4f3382dcacf5272898d80fa4ed59b261adcb8d
-`
-0src/main/java/eu/lindigkeit/tellme/Database.java,e/d/eda62844455210ecd8e69a42a327a9ca3afce8f8
-^
-.src/main/java/eu/lindigkeit/tellme/Worker.java,b/a/ba5cf000a4e2cf0cbd3ab3f6b92412fcd8ad1d44
-N
-src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
 „
 T.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_5_1.xml,2/d/2db86b06036eab117d01946b39d67ca64c749ea9
