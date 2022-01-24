@@ -16,6 +16,15 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.ResourceBundle;
 
+/**
+ * A login screen that offers login via email/password.
+ * <p>
+ *
+ * @author Cedric Lindigkeit
+ * @version 1.0
+ * @since JDK 15
+ */
+
 public class Login extends Stage {
 
     private static final ResourceBundle LANG = ResourceBundle.getBundle("language");
@@ -23,15 +32,19 @@ public class Login extends Stage {
 
     public Login() {
 
-        this.setTitle(ResourceBundle.getBundle("language").getString("app.login"));
+        this.setTitle(LANG.getString("app.login"));
         this.setResizable(false);
         this.centerOnScreen();
 
-        Label loginL = new Label(ResourceBundle.getBundle("language").getString("app.login"));
+        //Just the title
+
+        Label loginL = new Label(LANG.getString("app.login"));
         loginL.setId("loginL");
 
         INVALID_CREDENTIALS.setId("invalid");
         INVALID_CREDENTIALS.setVisible(false);
+
+        //Icon creation and styling
 
         FontIcon uIcon = new FontIcon(FluentUiFilledMZ.PERSON_MAIL_16);
         uIcon.setIconSize(24);
@@ -45,6 +58,8 @@ public class Login extends Stage {
         subIcon.setIconSize(24);
         subIcon.setIconColor(Color.web("#34495E"));
 
+        //Textfield creation and styling
+
         CustomTextField user = new CustomTextField();
         user.setLeft(uIcon);
         user.setId("userCTF");
@@ -55,33 +70,40 @@ public class Login extends Stage {
         password.setId("passwordCPF");
         password.getStyleClass().add("form");
 
+        //Button creation and styling
+
         Button submit = new Button();
         submit.setGraphic(subIcon);
         submit.setId("submitB");
         submit.onMouseClickedProperty().set(event -> {
 
+                    //Check if credentials are valid. If so, open the corresponding window. => Depending on their level of access.
+
                     if (submit(user, password)) {
 
-                        System.out.println(user.getText() + " logged in successfully.");
-
-                        if (Database.getLevel(user.getText()) == 0) {
-                            new WorkerCenter(user.getText());
-                        } else {
-                            new AdminCenter();
-                        }
+                        if (Database.getLevel(user.getText()) == 0) new WorkerCenter(user.getText());
+                        else new AdminCenter();
                         this.close();
-                    } else {
-
-                        INVALID_CREDENTIALS.setVisible(true);
-                        System.out.println("Login failed.");
-                    }
+                    } else INVALID_CREDENTIALS.setVisible(true);
                 }
         );
+
+        //Add everything to the scene
+
         Scene scene = new Scene(new Group(loginL, user, password, submit, INVALID_CREDENTIALS), 500, 300);
         scene.getStylesheets().add("login.css");
         this.setScene(scene);
         this.show();
     }
+
+    /**
+     * Checks if the credentials are valid.
+     * <p>
+     *
+     * @param user     The username the user entered.
+     * @param password The password the user entered.
+     * @return true, if the credentials are valid.
+     */
 
     public boolean submit(CustomTextField user, CustomPasswordField password) {
 
@@ -89,6 +111,8 @@ public class Login extends Stage {
         boolean result = false;
 
         switch (tmp) {
+
+            //Could have handled this better. Maybe I fix this later.
 
             case "CODE-10i" -> System.out.println("Establishing connection failed.");
             case "" -> System.out.println("User not found.");
