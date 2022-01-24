@@ -21,6 +21,17 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * This class is the GUI for the Control center for the workers.
+ * It also handles any occurring event
+ * <p>
+ *
+ * @author Cedric Lindigkeit
+ * @version 1.0.1
+ * @since JDK 15
+ */
+
+@SuppressWarnings("unchecked")
 public class WorkerCenter extends Stage {
 
     private static final ResourceBundle LANG = ResourceBundle.getBundle("language");
@@ -31,11 +42,15 @@ public class WorkerCenter extends Stage {
         this.setResizable(false);
         this.centerOnScreen();
 
+        //Icon creation section
+
         FontIcon clIcon = new FontIcon(FluentUiFilledMZ.PERSON_16);
         clIcon.setIconSize(24);
 
         FontIcon tIcon = new FontIcon(FluentUiFilledAL.CLOCK_16);
         tIcon.setIconSize(24);
+
+        //Creating all the components
 
         CustomTextField client = new CustomTextField();
         client.setPromptText(LANG.getString("workerhub.client"));
@@ -81,22 +96,21 @@ public class WorkerCenter extends Stage {
         submit.setToggleGroup(group);
         submit.onMouseClickedProperty().set(event -> {
 
-                    if (client.getText().isEmpty() || workType.getText().isEmpty() || timeSpent.getText().isEmpty() || date[0] == null) {
+                    //Could have given the user a response if one of the fields is empty. My bad.
 
-                        System.out.println("Please fill in all fields!");
+                    if (client.getText().isEmpty() || workType.getText().isEmpty() || timeSpent.getText().isEmpty() || date[0] == null)
                         return;
-                    }
-                    if (Database.setEntry(user, client.getText(), date[0], Integer.parseInt(timeSpent.getText()), workType.getText()))
-                        System.out.println("Entry successfully added");
-                    else System.out.println("Entry could not be added");
+                    Database.setEntry(user, client.getText(), date[0], Integer.parseInt(timeSpent.getText()), workType.getText());
                 }
         );
         SegmentedButton button = new SegmentedButton();
         button.getButtons().addAll(clear, submit);
         button.setId("button");
 
+        //Table creation section
+
         TableView2<Worker> table = new TableView2<>();
-        ObservableList<Worker> info = Database.getWorkerInfo(user);
+        ObservableList<Worker> info = Database.getWorkerInfo(user, "SELECT * FROM worker INNER JOIN client ON worker.worker_id = client.worker_id INNER JOIN work_details ON worker.worker_id = work_details.worker_id WHERE worker.username = '");
 
         TableColumn2<Worker, String> clientNameCol = new TableColumn2<>(LANG.getString("workerhub.client"));
         clientNameCol.setCellValueFactory(p -> p.getValue().clientNameProperty());
@@ -111,12 +125,18 @@ public class WorkerCenter extends Stage {
         table.setItems(info);
         table.setRowHeaderVisible(true);
         table.setId("table");
+        table.setEditable(false);
+
+        //Adding all the components to the scene
 
         Scene scene = new Scene(new Group(client, workType, datePicker, table, timeSpent, button), 600, 400);
         scene.getStylesheets().add("workerhub.css");
 
         this.setScene(scene);
         this.show();
+
+        //The button size depends on the used language. Its position is set here to make sure it is always centered on
+        // the x-axis. This has to be done after the creation of the stage.
 
         button.setTranslateX((600 - button.getWidth()) / 2);
     }

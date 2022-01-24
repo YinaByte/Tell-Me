@@ -15,6 +15,17 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.ResourceBundle;
 
+/**
+ * This class creates the admin center if the user has an access level of 1 (Admin).
+ * It contains a table with all workers and the clients they worked for.
+ * <p>
+ *
+ * @author Cedric Lindigkeit
+ * @version 1.0.1
+ * @since JDK 15
+ */
+
+@SuppressWarnings("unchecked")
 public class AdminCenter extends Stage {
 
     private static final ResourceBundle LANG = ResourceBundle.getBundle("language");
@@ -25,9 +36,19 @@ public class AdminCenter extends Stage {
         this.setResizable(false);
         this.centerOnScreen();
 
+        //Icon creation section
+
+        FontIcon bIcon = new FontIcon(FluentUiFilledMZ.SEARCH_INFO_24);
+        bIcon.setIconSize(24);
+        bIcon.setIconColor(Color.web("#34495E"));
+
+        //The ComboBox is used to search for a worker
+
         SearchableComboBox<String> comboBox = new SearchableComboBox<>();
         comboBox.getItems().addAll(Database.getAllWorkerNames());
         comboBox.setId("comboBox");
+
+        //The TableView is used to display the workers and their clients
 
         TableView2<Worker> tableView = new TableView2<>();
         tableView.setId("tableView");
@@ -47,17 +68,16 @@ public class AdminCenter extends Stage {
         workTypeCol.setPrefWidth(200);
 
         tableView.getColumns().addAll(clientNameCol, dateCol, timeSpentCol, workTypeCol);
+        tableView.setRowHeaderVisible(true);
         tableView.setId("tableView");
-
-        FontIcon bIcon = new FontIcon(FluentUiFilledMZ.SEARCH_INFO_24);
-        bIcon.setIconSize(24);
-        bIcon.setIconColor(Color.web("#34495E"));
+        tableView.setEditable(false);
 
         Button submit = new Button();
         submit.setGraphic(bIcon);
         submit.setId("submit");
-        submit.onMouseClickedProperty().set(event -> tableView.setItems(Database.getAdminInfo(comboBox.getValue()))
-        );
+        submit.onMouseClickedProperty().set(event -> tableView.setItems(Database.getWorkerInfo(comboBox.getValue(), "SELECT * FROM worker INNER JOIN work_details ON worker.worker_id = work_details.worker_id WHERE username = '")));
+
+        //Adding all elements to the scene
 
         Scene scene = new Scene(new Group(tableView, comboBox, submit), 600, 400);
         scene.getStylesheets().add("adminhub.css");

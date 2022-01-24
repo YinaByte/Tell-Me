@@ -8,64 +8,55 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * This class represents a worker and the clients he has worked for.
+ * One worker can have multiple clients.
+ * Properties are used to bind the data to the GUI. I usually do not use them.
+ * <p>
+ *
+ * @author Cedric Lindigkeit
+ * @version 1.0
+ * @since JDK 1.8
+ */
+
 public class Worker {
 
     private StringProperty clientName;
-    public void setClientName(String value) {
-        clientNameProperty().set(value);
-    }
-    public String getClientName() {
-        return clientNameProperty().get();
-    }
+
     public StringProperty clientNameProperty() {
+
         if (clientName == null) clientName = new SimpleStringProperty(this, "");
         return clientName;
     }
 
     private StringProperty date;
-    public void setDate(String value) {
-        dateProperty().set(value);
-    }
-    public String getDate() {
-        return dateProperty().get();
-    }
+
     public StringProperty dateProperty() {
+
         if (date == null) date = new SimpleStringProperty(this, "");
         return date;
     }
 
     private IntegerProperty timeSpent;
-    public void setTimeSpent(Integer value) {
-        timeSpentProperty().set(value);
-    }
-    public Integer getTimeSpent() {
-        return timeSpentProperty().get();
-    }
+
     public IntegerProperty timeSpentProperty() {
+
         if (timeSpent == null) timeSpent = new SimpleIntegerProperty(this, "");
         return timeSpent;
     }
 
     private StringProperty workType;
-    public void setWorkType(String value) {
-        workTypeProperty().set(value);
-    }
-    public String getWorkType() {
-        return workTypeProperty().get();
-    }
+
     public StringProperty workTypeProperty() {
+
         if (workType == null) workType = new SimpleStringProperty(this, "");
         return workType;
     }
 
-    public StringProperty user;
-    public void setUser(String value) {
-        userProperty().set(value);
-    }
-    public String getUser() {
-        return userProperty().get();
-    }
+    private StringProperty user;
+
     public StringProperty userProperty() {
+
         if (user == null) user = new SimpleStringProperty(this, "");
         return user;
     }
@@ -93,8 +84,11 @@ public class Worker {
         this.workTypeProperty().set(workType);
     }
 
+    //Simplified equals method
+
     @Override
     public boolean equals(Object o) {
+
         if (!(o instanceof Worker)) return false;
         return date.equals(((Worker) o).date);
     }
